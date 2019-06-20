@@ -26,7 +26,7 @@ You can find the logo of EOS Mainnet under `public` folder, the checksum is:
 
 ```
 openssl dgst -sha256 public/EOS-Mainnet-logo-500x500.png
-SHA256(public/EOS-Mainnet-logo-500x500.png)= a3b622596650188197758ae8b439b4635eda8bedbaae7affee3d649038d75762
+SHA256(public/EOS-Mainnet-logo-500x500.png)= 4f9a83541efaed8b78b9070f8066bce152651bc0cfc56f325dbca0a6dcd22561
 ```
 Note: Recommended logo format is PNG and the size should less than 50000 bytes(due to a limit of EOS Authenticator App). There's a SVG version under `public` also in case of any future usage.
 
@@ -140,12 +140,12 @@ Here is the payload:
 {
       "chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
       "chain_name": "EOS Mainnet",
-      "icon": "a3b622596650188197758ae8b439b4635eda8bedbaae7affee3d649038d75762",
+      "icon": "4f9a83541efaed8b78b9070f8066bce152651bc0cfc56f325dbca0a6dcd22561",
 }
 ```
 
 ```
-cleos push action eosio.assert setchain {"chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906","chain_name": "EOS Mainnet","icon": "a3b622596650188197758ae8b439b4635eda8bedbaae7affee3d649038d75762"} -p eosio -s -j -d > setup_assert.json
+cleos push action eosio.assert setchain {"chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906","chain_name": "EOS Mainnet","icon": "4f9a83541efaed8b78b9070f8066bce152651bc0cfc56f325dbca0a6dcd22561"} -p eosio -s -j -d > setup_assert.json
 ```
 
 
