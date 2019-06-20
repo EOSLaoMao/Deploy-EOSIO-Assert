@@ -1,5 +1,5 @@
 
-# Deploy eosio.assert Doc
+# Deploy eosio.assert on EOS Mainnet
 
 
 ## Prerequisites
@@ -22,14 +22,15 @@ SHA256(contracts/eosio.assert.abi)= 92807134f93622ab1ffaf16ac1688658688394155f58
 
 ### 2. Prepare chain id, name and logo
 
-You can find the logo of Crypto Kylin Testnet under `public` folder, the checksum is:
+You can find the logo of EOS Mainnet under `public` folder, the checksum is:
 
 ```
-openssl dgst -sha256 public/CryptoKylin-logo.png
-SHA256(public/CryptoKylin-logo.png)= 7d0b4735cf3788d38b972b383a80acb56f97955a50dee022e9b976eca282f754
+openssl dgst -sha256 public/EOS-Mainnet-logo-500x500.png
+SHA256(public/EOS-Mainnet-logo-500x500.png)= a3b622596650188197758ae8b439b4635eda8bedbaae7affee3d649038d75762
 ```
+Note: Recommended logo format is PNG and the size should less than 50000 bytes(due to a limit of EOS Authenticator App). There's a SVG version under `public` also in case of any future usage.
 
-the chain id of Crypto Kylin Testnet is `5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191`, you can find it via api nodes, such as https://api-kylin.eoslaomao.com/v1/chain/get_info
+the chain id of EOS Mainnet is `aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906`, you can find it via api nodes, such as https://api.eoslaomao.com/v1/chain/get_info
 
 
 ## STEP 1/3: Create account eosio.assert
@@ -38,17 +39,17 @@ the chain id of Crypto Kylin Testnet is `5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8e
 
 1. create eosio.assert account :
 ```
-cleos -u https://api-kylin.eoslaomao.com push action eosio newaccount '{"creator":"eosio","name":"eosio.assert","owner":{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"eosio","permission":"active"},"weight":1}],"waits":[]},"active":{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"eosio","permission":"active"},"weight":1}],"waits":[]}}' -p eosio -s -j -d > create_assert.json
+cleos -u https://api.eoslaomao.com push action eosio newaccount '{"creator":"eosio","name":"eosio.assert","owner":{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"eosio","permission":"active"},"weight":1}],"waits":[]},"active":{"threshold":1,"keys":[],"accounts":[{"permission":{"actor":"eosio","permission":"active"},"weight":1}],"waits":[]}}' -p eosio -s -j -d > create_assert.json
 ```
 
 2. delegate bandwidth to eosio.assert:
 ```
-cleos -u https://api-kylin.eoslaomao.com system delegatebw eosio eosio.assert "10 EOS" "10 EOS" -p eosio -s -j -d >> create_assert.json
+cleos -u https://api.eoslaomao.com system delegatebw eosio eosio.assert "1 EOS" "1 EOS" -p eosio -s -j -d >> create_assert.json
 ```
 
 3. buyram for eosio.assert:
 ```
-cleos -u https://api-kylin.eoslaomao.com system buyram eosio eosio.assert "10 EOS" -p eosio -s -j -d >> create_assert.json
+cleos -u https://api.eoslaomao.com system buyram eosio eosio.assert "40 EOS" -p eosio -s -j -d >> create_assert.json
 ```
 
 
@@ -100,54 +101,60 @@ You will get a transaction like this:
 }
 ```
 
-We have proposed this transaction on Kylin Testnet : [https://kylin.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert](https://kylin.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert), please review and verify ASAP. 
+We have proposed this transaction on EOS Mainnet : [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert), please review and verify ASAP. 
+
+Review `createassert` proposal:
 
 ```
-cleos -u https://api-kylin.eoslaomao.com multisig review eoslaomaocom createassert
+cleos -u https://api.eoslaomao.com multisig review eoslaomaocom createassert
 ```
 
-The actual transaction used in this proposal is in file `create_assert.json`.
+The actual transaction used in this proposal is `create_assert.json`.
 
 
 ## STEP 2/3: Deploy eosio.assert contract
 
 ```
-cleos -u https://api-kylin.eoslaomao.com set contract eosio.assert > deploy_assert.json
+cleos -u https://api.eoslaomao.com set contract eosio.assert > deploy_assert.json
 ```
 
 Update expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
 
-We have proposed this transaction on Kylin Testnet : [https://kylin.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert](https://kylin.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert), please review and verify ASAP. 
+We have proposed this transaction on EOS Mainnet: [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert), please review and verify ASAP. 
+
+Review `deployassert` proposal:
 
 ```
-cleos -u https://api-kylin.eoslaomao.com multisig review eoslaomaocom deployassert
+cleos -u https://api.eoslaomao.com multisig review eoslaomaocom deployassert
 ```
 
 
 
-## STEP 3/3: Setup chain info
+## STEP 3/3: Setup EOS Mainnet chain info
 
-Now we need to call setchain action in eosio.assert contracts to register Kylin Testnet onchain.
+The last step, we need to call setchain action in eosio.assert contracts to register EOS Mainnet chain info.
 
 Here is the payload:
 
 ```
 {
-      "chain_id": "5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191",
-      "chain_name": "CryptoKylin Testnet",
-      "icon": "7d0b4735cf3788d38b972b383a80acb56f97955a50dee022e9b976eca282f754"
+      "chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
+      "chain_name": "EOS Mainnet",
+      "icon": "a3b622596650188197758ae8b439b4635eda8bedbaae7affee3d649038d75762",
 }
 ```
 
 ```
-cleos push action eosio.assert setchain {"chain_id": "5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191","chain_name": "CryptoKylin Testnet","icon": "7d0b4735cf3788d38b972b383a80acb56f97955a50dee022e9b976eca282f754"} -p eosio -s -j -d > setup_assert.json
+cleos push action eosio.assert setchain {"chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906","chain_name": "EOS Mainnet","icon": "a3b622596650188197758ae8b439b4635eda8bedbaae7affee3d649038d75762"} -p eosio -s -j -d > setup_assert.json
 ```
 
 
 Update `setup_assert.json`, set expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
 
-We have proposed this transaction on Kylin Testnet : [https://kylin.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert](https://kylin.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert), please review and verify ASAP. 
+We have proposed this transaction on EOS Mainnet : [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert), please review and verify ASAP. 
+
+Review setupassert
 
 ```
-cleos -u https://api-kylin.eoslaomao.com multisig review eoslaomaocom setupassert
+cleos -u https://api.eoslaomao.com multisig review eoslaomaocom setupassert
 ```

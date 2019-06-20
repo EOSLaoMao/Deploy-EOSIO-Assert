@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000px" height="1000px" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>EOS-Mainnet-logo</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="1000" height="1000"></rect>
+        <g id="Group" transform="translate(236.000000, 99.000000)" stroke="#18336F" stroke-width="36">
+            <polygon id="Path-2" points="264.5 0 86.2043103 243.218194 0 636.75917 264.5 802.284133 529 636.75917 442.79569 243.218194"></polygon>
+            <polyline id="Path-3" stroke-linejoin="bevel" points="86.8653137 243.027675 265.121675 802.284133 443.110701 243.027675"></polyline>
+            <polygon id="Path-4" stroke-linejoin="round" points="0 636.361624 529 636.361624 264.5 175.682657"></polygon>
+            <path d="M265.778579,0 L265.778579,188.890029" id="Path-5"></path>
+        </g>
+    </g>
+</svg>
