@@ -115,7 +115,7 @@ The actual transaction used in this proposal is `create_assert.json`.
 ## STEP 2/3: Deploy eosio.assert contract
 
 ```
-cleos -u https://api.eoslaomao.com set contract eosio.assert > deploy_assert.json
+cleos -u https://api.eoslaomao.com set contract eosio.assert contracts/eosio.assert/ -p eosio.assert -s -j -d > deploy_assert.json
 ```
 
 Update expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
@@ -145,7 +145,7 @@ Here is the payload:
 ```
 
 ```
-cleos push action eosio.assert setchain {"chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906","chain_name": "EOS Mainnet","icon": "4f9a83541efaed8b78b9070f8066bce152651bc0cfc56f325dbca0a6dcd22561"} -p eosio -s -j -d > setup_assert.json
+cleos -u https://api.eoslaomao.com push action eosio.assert setchain '{"chain_id": "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906","chain_name": "EOS Mainnet","icon": "4f9a83541efaed8b78b9070f8066bce152651bc0cfc56f325dbca0a6dcd22561"}' -p eosio -s -j -d > setup_assert.json
 ```
 
 
