@@ -1,6 +1,10 @@
-
 # Deploy eosio.assert on EOS Mainnet
 
+Documentation of eosio.assert contract deployment.
+
+You can find more details of eosio.assert here:
+
+https://github.com/EOSIO/eosio.assert
 
 ## Prerequisites
 
@@ -47,13 +51,13 @@ cleos -u https://api.eoslaomao.com push action eosio newaccount '{"creator":"eos
 cleos -u https://api.eoslaomao.com system delegatebw eosio eosio.assert "1 EOS" "1 EOS" -p eosio -s -j -d >> create_assert.json
 ```
 
-3. buyram for eosio.assert:
+3. buyram for eosio.assert(at least 321kb ram needed, 40 EOS will get you around 350kb on EOS Mainnet):
 ```
 cleos -u https://api.eoslaomao.com system buyram eosio eosio.assert "40 EOS" -p eosio -s -j -d >> create_assert.json
 ```
 
 
-Merge actions in file `create_assert.json`, also change expire time in `create_assert.json` into future date, e.g. 10 days later.
+Merge actions in file `create_assert.json`, and change expire time in `create_assert.json` into future date, e.g. 10 days later, and set `ref_block_num` and `ref_block_prefix` to 0.
 
 You will get a transaction like this:
 
@@ -109,10 +113,12 @@ Review `createassert` proposal:
 cleos -u https://api.eoslaomao.com multisig review eoslaomaocom createassert
 ```
 
-The actual transaction used in this proposal is `create_assert.json`.
+The actual transaction used in EOS Mainnet proposal is `create_assert.json`.
 
 
 ## STEP 2/3: Deploy eosio.assert contract
+
+Note: before deployment, make sure eosio.assert has enough CPU/NET and RAM resource.
 
 ```
 cleos -u https://api.eoslaomao.com set contract eosio.assert contracts/eosio.assert/ -p eosio.assert -s -j -d > deploy_assert.json
@@ -120,19 +126,13 @@ cleos -u https://api.eoslaomao.com set contract eosio.assert contracts/eosio.ass
 
 Update expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
 
-We have proposed this transaction on EOS Mainnet: [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert), please review and verify ASAP. 
-
-Review `deployassert` proposal:
-
-```
-cleos -u https://api.eoslaomao.com multisig review eoslaomaocom deployassert
-```
+We will propose this transaction after STEP1 is approved and executed.
 
 
 
 ## STEP 3/3: Setup EOS Mainnet chain info
 
-The last step, we need to call setchain action in eosio.assert contracts to register EOS Mainnet chain info.
+The last step, we need to call `setchain` action in eosio.assert contracts to register EOS Mainnet chain info.
 
 Here is the payload:
 
@@ -151,10 +151,4 @@ cleos -u https://api.eoslaomao.com push action eosio.assert setchain '{"chain_id
 
 Update `setup_assert.json`, set expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
 
-We have proposed this transaction on EOS Mainnet : [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert), please review and verify ASAP. 
-
-Review setupassert
-
-```
-cleos -u https://api.eoslaomao.com multisig review eoslaomaocom setupassert
-```
+We will propose this transaction after STEP 2 is approved and executed.
