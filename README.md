@@ -105,15 +105,9 @@ You will get a transaction like this:
 }
 ```
 
-We have proposed this transaction on EOS Mainnet : [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert), please review and verify ASAP. 
+We have proposed this transaction on EOS Mainnet : [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=createassert) And it has been approved by more than 15 Block Producers and executed successfully.
 
-Review `createassert` proposal:
-
-```
-cleos -u https://api.eoslaomao.com multisig review eoslaomaocom createassert
-```
-
-The actual transaction used in EOS Mainnet proposal is `create_assert.json`.
+The actual transaction data used in EOS Mainnet proposal is `create_assert.json`.
 
 
 ## STEP 2/3: Deploy eosio.assert contract
@@ -126,7 +120,13 @@ cleos -u https://api.eoslaomao.com set contract eosio.assert contracts/eosio.ass
 
 Update expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
 
-We will propose this transaction after STEP1 is approved and executed.
+We have proposed this transaction on EOS Mainnet : [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=deployassert) We have included top 35 Block Producers on EOS Mainnet in this proposal, please review&verify.
+
+The actual transaction data used in EOS Mainnet proposal is `deploy_assert.json`.
+
+```
+cleos -u https://api.eoslaomao.com multisig review eoslaomaocom deployassert
+```
 
 
 
@@ -151,4 +151,4 @@ cleos -u https://api.eoslaomao.com push action eosio.assert setchain '{"chain_id
 
 Update `setup_assert.json`, set expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
 
-We will propose this transaction after STEP 2 is approved and executed.
+We will propose this transaction after STEP 1&2 is approved and executed.
