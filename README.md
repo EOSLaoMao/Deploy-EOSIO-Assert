@@ -151,4 +151,8 @@ cleos -u https://api.eoslaomao.com push action eosio.assert setchain '{"chain_id
 
 Update `setup_assert.json`, set expiration to a future time, set `ref_block_num` and `ref_block_prefix` to 0, and propose it. 
 
-We will propose this transaction after STEP 1&2 is approved and executed.
+We have proposed this transaction on EOS Mainnet : [https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert](https://www.eosx.io/tools/msig/proposal?proposer=eoslaomaocom&name=setupassert) We have included top 35 Block Producers on EOS Mainnet in this proposal, please review&verify. We have also included Crypto Lions in this proposal considering their experiences of deploying and testing eosio.assert on Jungle Testnet.
+
+The actual transaction data used in EOS Mainnet proposal is `setup_assert.json`.
+
+
